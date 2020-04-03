@@ -14,53 +14,40 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Button = /** @class */ (function (_super) {
-        __extends(Button, _super);
+    var Label = /** @class */ (function (_super) {
+        __extends(Label, _super);
         // constructors
-        /**
-         * Creates an instance of Button.
-         * @param {string} imagePath
-         * @param {number} [x=0]
-         * @param {number} [y=0]
-         * @param {boolean} [isCentered=false]
-         */
-        function Button(imagePath, x, y, isCentered) {
+        function Label(text, fontSize, fontFamily, fontColour, x, y, isCentered) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
             if (isCentered === void 0) { isCentered = false; }
-            var _this = _super.call(this, imagePath) || this;
+            var _this = _super.call(this, text, fontSize + " " + fontFamily, fontColour) || this;
             _this.isCentered = isCentered;
+            _this._initialize();
             if (isCentered) {
                 _this.regX = _this.halfWidth;
                 _this.regY = _this.halfHeight;
             }
             _this.x = x;
             _this.y = y;
-            _this.on("mouseover", _this._MouseOver);
-            _this.on("mouseout", _this._MouseOut);
             return _this;
         }
         // private methods
-        Button.prototype._MouseOver = function () {
-            this.alpha = 0.7; // change alpha transparency to 70%
-        };
-        Button.prototype._MouseOut = function () {
-            this.alpha = 1.0; // change alpha transparency to 100%
+        Label.prototype._initialize = function () {
+            this.width = this.getBounds().width;
+            this.height = this.getBounds().height;
+            this.halfWidth = this.width * 0.5;
+            this.halfHeight = this.height * 0.5;
         };
         // public methods
-        /**
-         * The Start Method performs object initialization
-         *
-         * @returns {void}
-         */
-        Button.prototype.Start = function () {
+        Label.prototype.Start = function () {
         };
-        Button.prototype.Update = function () {
+        Label.prototype.Update = function () {
         };
-        Button.prototype.Reset = function () {
+        Label.prototype.Reset = function () {
         };
-        return Button;
-    }(objects.GameObject));
-    objects.Button = Button;
+        return Label;
+    }(createjs.Text));
+    objects.Label = Label;
 })(objects || (objects = {}));
-//# sourceMappingURL=button.js.map
+//# sourceMappingURL=label.js.map
